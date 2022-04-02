@@ -19,7 +19,7 @@ GET http://localhost:5000/api/v1/superheroes/superhero HTTP/1.1
 
 
 ###
-GET http://localhost:5000/api/v1/superheroes/6239d979f7cabd5399b920b9 HTTP/1.1
+GET http://localhost:5000/api/v1/superheroes/623dee5e12c091eecf1574ad HTTP/1.1
 
 ###
 PUT http://localhost:5000/api/v1/superheroes/623dee5e12c091eecf1574ad HTTP/1.1
