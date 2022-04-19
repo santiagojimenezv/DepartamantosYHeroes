@@ -34,13 +34,13 @@ const email = require('./src/services/sendgrid/email')
 const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
-client.messages
+/* client.messages
   .create({
     body: 'Prueba de twilio. Ingenieria de Software II. U Autonoma - 2022',
     from: '+19706717884',
     to: '+573207974474',
   })
-  .then((message) => console.log(message.sid));
+  .then((message) => console.log(message.sid)); */
 
 my_app.use(express.json());
 my_app.use(express.urlencoded({ extended: false}));
@@ -65,4 +65,15 @@ my_app.use((err, req, res, next)=>{
 });
 
 /* ---------------------TWILIO-SENDGRID------------------------------ */
+
+/* ---------------------TWILIO-WhatsApp------------------------------ */
+client.messages
+  .create({
+     from: 'whatsapp:+19706717884',
+     body: 'Mensaje de prueba para la actividad de Twilio WhatsApp de Ingeniería de Software II',
+     to: 'whatsapp:+573207974474'
+   })
+  .then(message => console.log(message.sid));
+
+
 routerApi(my_app);

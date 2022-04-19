@@ -12,7 +12,7 @@ function sendEmailConfirmationHTML(customerName, orderNro){
   </head>
   <body>
     <div class="container section">
-      <label>Paisaje</label>
+      <label>Iphone</label>
       <img src="https://i.blogs.es/187a45/iphone-11-pro-02/450_1000.jpg">
       <img src="https://asyscomputadores.com/wp-content/uploads/2021/07/h6PGQO8p-Dell-Alienware-Aurora-Ryzen-Edition-R10-1.jpg.webp">
     </div>
