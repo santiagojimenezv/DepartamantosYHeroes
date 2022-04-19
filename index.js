@@ -25,3 +25,14 @@ my_app.use(boomErrorHandler)
 
 routerApi(my_app);
 
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const client = require('twilio')(accountSid, authToken);
+
+client.messages
+  .create({
+    body: 'Prueba de twilio. Ingenieria de Software II. U Autonoma - 2022',
+    from: '+19706717884',
+    to: '+573207974474',
+  })
+  .then((message) => console.log(message.sid));
