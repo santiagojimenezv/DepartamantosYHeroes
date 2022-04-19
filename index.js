@@ -23,7 +23,8 @@ my_app.use(logErrors)
 my_app.use(errorHandler)
 my_app.use(boomErrorHandler)
 
-routerApi(my_app);
+
+/* ---------------------TWILIO------------------------------ */
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
@@ -36,3 +37,32 @@ client.messages
     to: '+573207974474',
   })
   .then((message) => console.log(message.sid));
+
+/* ---------------------TWILIO------------------------------ */
+
+/* ---------------------SENDGRID------------------------------ */
+
+my_app.use(express.json());
+my_app.use(express.urlencoded({ extended: false}));
+
+my_app.get('/', (req,res)=>{
+  res.json({message:'Success'})
+})
+
+my_app.post('/api/email/confirmation', async(req,res,next)=>{
+  try {
+    res.json(await email.sendOrder(req.body))
+  } catch (error) {
+    next(error)
+  }
+})
+
+my_app.use((err, req, res, next)=>{
+  const statusCode = err.statusCode || 500
+  console.error(err.message, err.stack)
+  res.status(statusCode).json({ message: err.message})
+  return;
+});
+
+/* ---------------------SENDGRID------------------------------ */
+routerApi(my_app);
