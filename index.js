@@ -24,11 +24,15 @@ my_app.use(errorHandler)
 my_app.use(boomErrorHandler)
 
 
-/* ---------------------TWILIO------------------------------ */
+/* ---------------------TWILIO-SENDGRID------------------------------ */
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
+
+const email = require('./src/services/sendgrid/email')
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 client.messages
   .create({
@@ -37,10 +41,6 @@ client.messages
     to: '+573207974474',
   })
   .then((message) => console.log(message.sid));
-
-/* ---------------------TWILIO------------------------------ */
-
-/* ---------------------SENDGRID------------------------------ */
 
 my_app.use(express.json());
 my_app.use(express.urlencoded({ extended: false}));
@@ -64,5 +64,5 @@ my_app.use((err, req, res, next)=>{
   return;
 });
 
-/* ---------------------SENDGRID------------------------------ */
+/* ---------------------TWILIO-SENDGRID------------------------------ */
 routerApi(my_app);
